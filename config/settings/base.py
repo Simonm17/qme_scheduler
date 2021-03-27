@@ -33,7 +33,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+    'users.apps.UsersConfig',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,6 +76,40 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+
+AUTH_USER_MODEL = 'users.User'
+
+# Setting this to “email” requires ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_MAX_EMAIL_ADDRESSES = 1
+
+ACCOUNT_SESSION_REMEMBER = True
+
+# Username configurations to block username errors when using OAuth login
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+ACCOUNT_USERNAME_REQUIRED = False
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.environ['QME_GOOGLE_CLIENT_ID'],
+            'secret': os.environ['QME_GOOGLE_CLIENT_SECRET'],
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
 
 
 AUTH_PASSWORD_VALIDATORS = [

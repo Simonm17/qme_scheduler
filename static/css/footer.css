@@ -1,0 +1,30 @@
+footer {
+    display: flex;
+    min-height: 10vh;
+    width: 60%;
+    margin: auto;
+    margin-top: 100px;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid;
+}
+
+footer li {
+    list-style: none;
+    margin: 5px 0 5px 0;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-shadow: 2px 2px 5px;
+    color: #a661ff
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        display: none;
+    }
+}

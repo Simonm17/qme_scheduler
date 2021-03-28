@@ -1,0 +1,158 @@
+/* For login, logout, register, email, password, and profile templates */
+
+.sign-main-div {
+    width: 350px;
+    margin: auto;
+    border: 1px solid;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px 0 25px 0;
+    box-shadow: -3px 3px 5px  #a5a5a5;
+    animation: account-drop 1.5s ease-out;
+}
+
+@keyframes account-drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.sign-header {
+    background-color: white;
+}
+
+.login, .signup {
+    padding: 10px;
+}
+
+.login ul, .signup li {
+    list-style: none;
+    color: red;
+}
+
+.login-button {
+    width: 100%;
+}
+
+.or-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 10px 0;
+}
+
+.login-or {
+    color: gray;
+    text-transform: uppercase;
+    padding-left: 10px;
+    padding-right: 10px;
+    pointer-events: none;
+}
+
+.or-sub-div {
+    border-top: 1px solid;
+    flex: 1;
+    position: relative;
+    top: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.fa-google {
+    background: linear-gradient(rgb(71, 99, 255), rgb(78, 190, 13), rgb(243, 255, 74), rgb(255, 18, 18));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.forgot-password, .forgot-password:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.google, .google:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.sign-sub-div {
+    width: 350px;
+    margin: auto;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: -3px 3px 5px  #a5a5a5;
+    animation: account-rise 1.5s ease-out;
+}
+
+.sign-sub-div p {
+    text-align: center;
+    padding-top: 10px;
+}
+
+@keyframes account-rise {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* IIId. EMAIL/PASSWORD SECTION */
+.add_email, .password_change, .password_reset {
+    max-width: 475px;
+}
+
+.email-button {
+    background-color:  rgb(185, 185, 185);
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 8px;
+}
+
+/* IIIe. PROFILE SECTION */
+.profile-div {
+    display: flex;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+}
+
+.profile-ul {
+    flex:1;
+    margin-top: 40px;
+}
+
+.profile-li {
+    list-style: none;
+    font-size: 18px;
+    display: block;
+    margin: 5px 0;
+}
+
+.profile-info {
+    flex: 2;
+}
+
+.profile-heading {
+    margin-bottom: 25px;
+}

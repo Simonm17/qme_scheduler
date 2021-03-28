@@ -1,0 +1,112 @@
+header {
+    font-size: 18px;
+    min-height: 20vh;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    width: 90px;
+}
+
+.logo-a {
+    flex: 1;
+}
+
+nav {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+}
+
+header li {
+    list-style: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.user-div {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    opacity: .7;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    text-shadow: 2px 2px 5px;
+    color: #a661ff
+}
+
+.burger {
+    display: none;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+    background-color: #a5a5a5;
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+@keyframes userLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    nav {
+        position: absolute;
+        right: 0px;
+        height: 80vh;
+        top: 20vh;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        align-items: center;
+        width: 40%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin: 10px 0;
+        opacity: 0;
+    }
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+}

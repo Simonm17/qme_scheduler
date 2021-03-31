@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
 from .models import User
 
 
@@ -55,8 +54,9 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserAdmin(BaseUserAdmin):
+
     list_display = ('email', 'date_joined', 'last_login', 'is_staff', 'is_admin', 'party')
-    list_filter = ('is_admin', 'is_staff', 'party')
+    list_filter = ('is_admin', 'party',)
 
     search_fields = ('email',)
     ordering = ('email',)
@@ -66,14 +66,14 @@ class UserAdmin(BaseUserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'date_of_birth')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_admin', 'is_superuser')}),
-        ('Firm', {'fields': ('party', 'is_firm_admin')}),
+        ('Firm', {'fields': ('party', 'is_requesting_admin', 'is_firm_admin')}),
         ('Misc.', {'fields': ('last_login', 'date_joined')})
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields' : ('email', 'first_name', 'last_name', 'date_of_birth',
+            'fields' : ('email', 'password1', 'password2', 'first_name', 'last_name', 'date_of_birth',
                         'is_active', 'is_staff', 'is_admin', 'is_superuser',
                         'party', 'is_firm_admin')
         }),

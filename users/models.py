@@ -31,6 +31,7 @@ class User(AbstractBaseUser):
         choices=PARTY,
         null=True
     )
+    is_requesting_admin = models.BooleanField(default=False)
     is_firm_admin = models.BooleanField(default=False)
 
 

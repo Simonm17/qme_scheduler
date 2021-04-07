@@ -6,14 +6,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from .views import home
-from users.apis.viewsets import UserViewSet
 
-router = routers.DefaultRouter()
-router.register('contact', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
+    path('users/', include('users.urls')),  # includes dj-rest-auth routes
 ]
 
 

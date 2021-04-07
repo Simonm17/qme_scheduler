@@ -111,6 +111,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_USERNAME_REQUIRED = False
 
+# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'users.apis.serializers.RegisterSerializer'
 }

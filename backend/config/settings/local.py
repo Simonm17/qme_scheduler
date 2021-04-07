@@ -13,7 +13,6 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -24,7 +23,6 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',

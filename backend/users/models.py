@@ -35,7 +35,9 @@ class User(AbstractBaseUser):
     is_firm_admin = models.BooleanField(default=False)
 
 
+    """ Methods and attributes """
     USERNAME_FIELD = 'email'
+    
     # Required fields when running createsuperuser command
     REQUIRED_FIELDS = []
 

@@ -3,10 +3,7 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = [
-
-]
-
+ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
@@ -14,6 +11,5 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'

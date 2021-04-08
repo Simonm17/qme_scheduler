@@ -202,7 +202,7 @@ class RegisterSerializer(serializers.Serializer):
         (DEFENDANT, 'Defense Attorney'),
     ]
     party = serializers.ChoiceField(choices=PARTY)
-    is_requesting_admin = serializers.BooleanField()/
+    is_requesting_admin = serializers.BooleanField()
 
 
     def validate_email(self, email):

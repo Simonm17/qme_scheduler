@@ -13,13 +13,13 @@ function Login() {
     const [message, setMessage] = useContext(MessageContext);
 
     const displayErrors = (e) => {
-        console.log("refreshing displayError");
         setMessage([]);
+        const msgList = [];
         for (const [key, value] of Object.entries(e)) {
             console.log(`${key}: ${value}`);
-            setMessage([...message, value]);
+            setMessage([...msgList, value]);
         }
-    }    
+    }
 
     const handleLoginSubmit = e => {
         e.preventDefault();
@@ -36,6 +36,7 @@ function Login() {
             setMessage(['Successfully logged in!']);
 
         }).catch(err => {
+            setMessage([]);
             displayErrors(err.response.data);
         });
     }
@@ -47,7 +48,7 @@ function Login() {
             <FormControl type='password' placeholder='password' className='mr-sm-2' value={password} onChange={e => setPassword(e.target.value)}></FormControl>
             <Button variant='outline-success' type='submit'>Login</Button>
         </Form>
-        <button onClick={() => setMessage("Hi from button!")}>Button!</button>
+        <button onClick={() => setMessage(["Hi from button!"])}>Button!</button>
         </>
     )
 }

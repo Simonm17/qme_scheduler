@@ -5,16 +5,16 @@ const Message = () => {
 
     const [message, setMessage] = useContext(MessageContext);
 
-    useEffect(() => {
-        console.log('refreshing message state');
-    }, [message]);
-
     const clearMsg = () => {
         setMessage([]);
     };
 
+    useEffect(() => {
+        
+    }, [message, setMessage]);
+
     const messages = message.map((msg) => 
-        <li>{msg}</li>
+        <li key={message.indexOf(msg)}>{msg}</li>
     );
 
 

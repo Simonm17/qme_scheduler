@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
-
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import Login from './auth/Login';
+import { TokenContext } from '../TokenContext';
+import { MessageContext } from '../MessageContext';
 
 const HomeNav = () => {
-
-    const [token, setToken] = useState('');
+    const [token, setToken] = useContext(TokenContext);
+    const [message, setMessage] = useContext(MessageContext);
 
     return (
         <Navbar bg="light" expand="lg">
@@ -24,8 +26,10 @@ const HomeNav = () => {
                                 <Nav.Link href="#home">Logout</Nav.Link>
                             </>
                             :
-                            <>
-                                <Nav.Link href="#home">Login</Nav.Link>
+                            <>  
+                                <Login />
+                                <Nav.Link href="#" className='small'>Login with Google</Nav.Link>
+                                
                                 <Nav.Link href="#home">Register</Nav.Link>
                             </>
                         }

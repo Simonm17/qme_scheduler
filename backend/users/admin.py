@@ -14,7 +14,7 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'email', 'first_name', 'last_name', 'date_of_birth', 'party'
+            'email', 'first_name', 'last_name', 'party'
         )
 
     def clean_password2(self):
@@ -43,7 +43,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'password', 'date_of_birth', 'is_active', 'is_staff', 'is_admin', 'party', 'is_firm_admin')
+        fields = ('email', 'first_name', 'last_name', 'password', 'is_active', 'is_staff', 'is_admin', 'party', 'is_firm_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -63,7 +63,7 @@ class UserAdmin(BaseUserAdmin):
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'date_of_birth')}),
+        ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_admin', 'is_superuser')}),
         ('Firm', {'fields': ('party', 'is_requesting_admin', 'is_firm_admin')}),
         ('Misc.', {'fields': ('last_login', 'date_joined')})
@@ -72,7 +72,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields' : ('email', 'password1', 'password2', 'first_name', 'last_name', 'date_of_birth',
+            'fields' : ('email', 'password1', 'password2', 'first_name', 'last_name',
                         'is_active', 'is_staff', 'is_admin', 'is_superuser',
                         'party', 'is_firm_admin')
         }),

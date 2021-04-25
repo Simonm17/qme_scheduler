@@ -9,7 +9,8 @@ import HomePage from './pages/index/Home';
 import Message from './components/Message';
 import { TokenProvider } from './TokenContext';
 import { MessageProvider } from './MessageContext';
-
+import Register from './components/auth/Register';
+import ConfirmEmail from './components/auth/ConfirmEmail';
 
 function App() {
   return (
@@ -18,9 +19,21 @@ function App() {
     <BrowserRouter>
     
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
           <HomePage />
         </Route>
+        <Route path='/register'>
+          <Register />
+        </Route>
+        <Route
+          path="/confirm-email/:code"
+          render={
+            locationProps => 
+            <ConfirmEmail
+              params={locationProps}
+            />
+          }
+        />
       </Switch>
       
     </BrowserRouter>

@@ -13,6 +13,7 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
 from ..models import User
 
+
 """
     OAuth2 workflow ->
     1. Frontend button.onClick() => GET: backend/users/auth/login/ -> trigger views.oauth2_login
@@ -42,6 +43,7 @@ class SendEmailVerificationView(APIView):
                 return Response({'message': 'Verification e-mail sent.'}, status=status.HTTP_201_CREATED)
             except APIException:
                 return Response({'message': 'This email does not exist, please create a new account.'}, status=status.HTTP_403_FORBIDDEN)
+
 
 class GoogleConnect(SocialLoginView):
     client_class = OAuth2Client

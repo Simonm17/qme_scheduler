@@ -187,6 +187,57 @@ class SocialConnectSerializer(SocialConnectMixin, SocialLoginSerializer):
     pass
 
 
+class CustomRegisterSerializer(serializers.ModelSerializer):
+    password1 = serializers.CharField(write_only=True)
+    password2 = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+
+        fields = ['id', 'first_name', 'last_name',
+                'email', 'password1', 'password2',
+                'party', 'is_requesting_admin',
+        ]
+
+    def validate_email(self, email):
+        email = get_adapter().clean_email(email)
+        if allauth_settings.UNIQUE_EMAIL:
+            if email and email_address_exists(email):
+                raise serializers.ValidationError(
+                    _("A user is already registered with this e-mail address."))
+        return email
+
+    def validate_password1(self, password):
+        return get_adapter().clean_password(password)
+
+    def validate(self, data):
+        if data['password1'] != data['password2']:
+            raise serializers.ValidationError(_("The two password fields didn't match."))
+        return data
+
+    def custom_signup(self, request, user):
+        pass
+
+    def get_cleaned_data(self):
+        return {
+            'password1': self.validated_data.get('password1', ''),
+            'email': self.validated_data.get('email', ''),
+            'first_name': self.validated_data.get('first_name', ''),
+            'last_name': self.validated_data.get('last_name', ''),
+            'party': self.validated_data.get('party', ''),
+            'is_requesting_admin': self.validated_data.get('is_requesting_admin', False),
+        }
+
+    def save(self, request):
+        adapter = get_adapter()
+        user = adapter.new_user(request)
+        self.cleaned_data = self.get_cleaned_data()
+        adapter.save_user(request, user, self)
+        self.custom_signup(request, user)      # custom_signup's function is pass, so it does nothing. Can delete.
+        setup_user_email(request, user, [])
+        # user.save() # edited
+        return user
+
 class RegisterSerializer(serializers.Serializer):
 
     first_name = serializers.CharField(max_length=120)
@@ -202,8 +253,7 @@ class RegisterSerializer(serializers.Serializer):
         (DEFENDANT, 'Defense Attorney'),
     ]
     party = serializers.ChoiceField(choices=PARTY)
-    is_requesting_admin = serializers.BooleanField()
-
+    is_requesting_admin = serializers.BooleanField(default=False)
 
     def validate_email(self, email):
         email = get_adapter().clean_email(email)
@@ -241,6 +291,7 @@ class RegisterSerializer(serializers.Serializer):
         adapter.save_user(request, user, self)
         self.custom_signup(request, user)
         setup_user_email(request, user, [])
+        # user.save() # edited
         return user
 
 

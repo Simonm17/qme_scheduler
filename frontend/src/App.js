@@ -11,6 +11,7 @@ import { TokenProvider } from './TokenContext';
 import { MessageProvider } from './MessageContext';
 import Register from './pages/auth/Register';
 import ConfirmEmail from './pages/auth/ConfirmEmail';
+import Auth from './pages/auth/Auth';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <HomePage />
+        </Route>
+        <Route path='/login'>
+          <Auth />
         </Route>
         <Route path='/register'>
           <Register />

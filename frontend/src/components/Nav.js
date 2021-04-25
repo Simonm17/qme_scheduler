@@ -6,6 +6,7 @@ import Logout from './auth/Logout';
 import { TokenContext } from '../TokenContext';
 import { MessageContext } from '../MessageContext';
 
+
 const HomeNav = () => {
     const [token, setToken] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
@@ -36,7 +37,7 @@ const HomeNav = () => {
                             </>
                             :
                             <>  
-                                <Login />
+                                <Link to='/login'>Login</Link>
                                 <Nav.Link href="#" className='small'>Login with Google</Nav.Link>
                                 
                                 <Link to={{

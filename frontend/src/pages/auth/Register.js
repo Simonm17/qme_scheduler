@@ -4,6 +4,7 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import { baseBackendUrl } from '../../urls';
 import { MessageContext } from '../../MessageContext';
 import Message from '../../components/Message';
+import Nav from '../../components/Nav';
 
 function Register() {
 
@@ -53,6 +54,7 @@ function Register() {
 
     return (
         <>
+        <Nav />
         {sent? 
             <p>An email has been sent to your email address. Please check your inbox.</p>
             :

@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import { baseBackendUrl } from '../../urls';
 import { MessageContext } from '../../MessageContext';
-import Message from '../Message';
+import Message from '../../components/Message';
 
 function Register() {
 

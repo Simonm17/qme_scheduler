@@ -4,7 +4,7 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import { baseBackendUrl } from '../../urls';
 import { TokenContext } from '../../TokenContext';
 import { MessageContext } from '../../MessageContext';
-
+import ResendEmail from './ResendEmail';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -12,11 +12,20 @@ function Login() {
     const [token, setToken] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
 
+
+
     const displayErrors = (e) => {
         setMessage([]);
         for (const [key, value] of Object.entries(e)) {
             console.log(`${key}: ${value}`);
-            setMessage(prev => [...prev, [value]]);
+
+            if (value == 'E-mail is not verified.') {
+                setMessage(prev => [...prev, [value, <ResendEmail email={email}/>]]);
+            } else {
+                setMessage(prev => [...prev, [value]]);
+            }
+
+            
         }
     }
 

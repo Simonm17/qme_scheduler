@@ -5,13 +5,13 @@ import { baseBackendUrl } from '../../urls';
 import { TokenContext } from '../../TokenContext';
 import { MessageContext } from '../../MessageContext';
 import ResendEmail from '../../components/auth/ResendEmail';
+import { Link } from 'react-router-dom'; 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [token, setToken] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
-
 
 
     const displayErrors = (e) => {
@@ -55,6 +55,7 @@ function Login() {
                 <FormControl type='password' placeholder='password' className='mr-sm-2' value={password} onChange={e => setPassword(e.target.value)}></FormControl>
                 <Button variant='outline-success' type='submit'>Login</Button>
             </Form>
+            <p>Forgot password? <Link to='password/reset'>reset password</Link></p>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
-import Login from './auth/Login';
+import Login from '../pages/auth/Login';
 import Logout from './auth/Logout';
 import { TokenContext } from '../TokenContext';
 import { MessageContext } from '../MessageContext';
@@ -37,11 +37,11 @@ const HomeNav = () => {
                             </>
                             :
                             <>  
-                                <Link to='/login'>Login</Link>
+                                <Link to='/users/login'>Login</Link>
                                 <Nav.Link href="#" className='small'>Login with Google</Nav.Link>
                                 
                                 <Link to={{
-                                    pathname: `/register`
+                                    pathname: `/users/register`
                                 }}>Register</Link>
                             </>
                         }

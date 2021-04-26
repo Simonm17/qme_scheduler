@@ -54,7 +54,6 @@ function Register() {
 
     return (
         <>
-        <Nav />
         {sent? 
             <p>An email has been sent to your email address. Please check your inbox.</p>
             :

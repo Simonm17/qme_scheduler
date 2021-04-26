@@ -23,21 +23,9 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-        <Route path='/login'>
+        <Route path='/users'>
           <Auth />
         </Route>
-        <Route path='/register'>
-          <Register />
-        </Route>
-        <Route
-          path="/confirm-email/:code"
-          render={
-            locationProps => 
-            <ConfirmEmail
-              params={locationProps}
-            />
-          }
-        />
       </Switch>
       
     </BrowserRouter>

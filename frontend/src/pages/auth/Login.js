@@ -4,7 +4,7 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 import { baseBackendUrl } from '../../urls';
 import { TokenContext } from '../../TokenContext';
 import { MessageContext } from '../../MessageContext';
-import ResendEmail from './ResendEmail';
+import ResendEmail from '../../components/auth/ResendEmail';
 
 function Login() {
     const [email, setEmail] = useState('');

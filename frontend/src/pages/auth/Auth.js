@@ -5,6 +5,7 @@ import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import Register from './Register';
 import ConfirmEmail from './ConfirmEmail';
 import PasswordReset from './PasswordReset';
+import PasswordResetConfirm from './PasswordResetConfirm';
 import Message from '../../components/Message';
 
 function Auth() {

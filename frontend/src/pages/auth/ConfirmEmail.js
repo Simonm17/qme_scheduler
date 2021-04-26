@@ -15,7 +15,7 @@ function ConfirmEmail({ params }) {
 
     const submitEmailCode = () => {
         axios.post(`${baseBackendUrl}/users/registration/verify-email/`, data)
-        .then(res=> {
+        .then(res => {
             setVerified(true);
             console.log(res.data);
         })

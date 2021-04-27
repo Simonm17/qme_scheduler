@@ -1,4 +1,5 @@
 import urllib.parse
+from urllib.parse import unquote, unquote_to_bytes
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -11,6 +12,10 @@ from allauth.account.utils import send_email_confirmation
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
+
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from ..models import User
 
 
@@ -48,4 +53,17 @@ class SendEmailVerificationView(APIView):
 class GoogleConnect(SocialLoginView):
     client_class = OAuth2Client
     adapter_class = GoogleOAuth2Adapter
-    callback_url = 'http://localhost:8000'
+    
+    @property
+    def callback_url(self):
+        return self.request.build_absolute_uri(reverse('google_callback'))
+
+
+def google_callback(request):
+    url = 'http://localhost:3000'
+    # extract code out of request.GET to avoid annoying url parsing
+    code = request.GET['code']
+    # use HttpResponseRedirect to avoid AttributeError: 'str' object has no attribute 'get'
+    return HttpResponseRedirect(f'{url}/users/google/{code}/')
+
+

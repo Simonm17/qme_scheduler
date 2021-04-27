@@ -6,6 +6,7 @@ import { TokenContext } from '../../TokenContext';
 import { MessageContext } from '../../MessageContext';
 import ResendEmail from '../../components/auth/ResendEmail';
 import { Link } from 'react-router-dom'; 
+import GoogleLogin from '../../components/auth/GoogleLogin';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -56,6 +57,7 @@ function Login() {
                 <Button variant='outline-success' type='submit'>Login</Button>
             </Form>
             <p>Forgot password? <Link to='password/reset'>reset password</Link></p>
+            <GoogleLogin />
         </>
     )
 }

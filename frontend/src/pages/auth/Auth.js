@@ -7,6 +7,7 @@ import ConfirmEmail from './ConfirmEmail';
 import PasswordReset from './PasswordReset';
 import PasswordResetConfirm from './PasswordResetConfirm';
 import Message from '../../components/Message';
+import GoogleConnect from '../../components/auth/GoogleConnect';
 
 function Auth() {
 
@@ -32,6 +33,15 @@ function Auth() {
                         locationProps => 
                         <ConfirmEmail
                         params={locationProps}
+                        />
+                    }
+                />
+                <Route
+                    path={`${path}/google/:code`}
+                    render={
+                        locationProps =>
+                        <GoogleConnect
+                            params={locationProps}
                         />
                     }
                 />

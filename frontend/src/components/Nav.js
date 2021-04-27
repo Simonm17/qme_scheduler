@@ -38,8 +38,6 @@ const HomeNav = () => {
                             :
                             <>  
                                 <Link to='/users/login'>Login</Link>
-                                <Nav.Link href="#" className='small'>Login with Google</Nav.Link>
-                                
                                 <Link to={{
                                     pathname: `/users/register`
                                 }}>Register</Link>

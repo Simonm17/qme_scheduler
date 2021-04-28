@@ -447,7 +447,7 @@ class DefaultAccountAdapter(object):
         url = reverse("account_confirm_email", args=[emailconfirmation.key])
         # url = reverse("rest_verify_email", args=[emailconfirmation.key])
         # ret = build_absolute_uri(request, url)
-        ret = f'http://localhost:3000/confirm-email/{emailconfirmation.key}/'
+        ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
         return ret
 
     def send_confirmation_mail(self, request, emailconfirmation, signup):

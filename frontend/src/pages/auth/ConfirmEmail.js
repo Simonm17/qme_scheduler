@@ -6,7 +6,7 @@ import axios from 'axios';
 function ConfirmEmail({ params }) {
 
     // slices and returns code for backend code submission
-    const emailCode = params.location.pathname.slice(15, -1);
+    const emailCode = params.location.pathname.slice(22, -1);
     const data = {
         'key': emailCode
     }

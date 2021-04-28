@@ -28,8 +28,6 @@ function Login() {
             } else {
                 setMessage(prev => [...prev, [value]]);
             }
-
-            
         }
     }
 

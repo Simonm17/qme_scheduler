@@ -5,6 +5,8 @@ import Message from '../../components/Message';
 import axios from 'axios';
 import { baseBackendUrl } from '../../urls';
 import { useHistory } from 'react-router-dom';
+import DashNav from '../../components/dashboard/Nav';
+
 
 function Dashboard() {
 
@@ -36,6 +38,7 @@ function Dashboard() {
     return (
         <>
             <Message />
+            <DashNav />
             <p>dashboard!</p>
         </>
     );

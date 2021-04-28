@@ -5,8 +5,8 @@ import { Nav } from 'react-bootstrap';
 import axios from 'axios';
 import { baseBackendUrl } from '../../urls';
 
-
 function Logout({ setIsAuthenticated }) {
+
     const [message, setMessage] = useContext(MessageContext);
 
     const handleLogoutClick = () => {

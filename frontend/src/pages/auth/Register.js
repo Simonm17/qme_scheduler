@@ -75,7 +75,6 @@ function Register() {
 
                 <Button type="submit" variant='outline-primary'>Register</Button>
             </Form>
-            <Message />
             </>
         }
 

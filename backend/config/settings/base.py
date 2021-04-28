@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     'users.apps.UsersConfig',
+    'subscriptions.apps.SubscriptionsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -114,6 +115,18 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_USERNAME_REQUIRED = False
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+REST_USE_JWT = True
+
+JWT_AUTH_COOKIE = 'qme-auth-token'
+
+JWT_AUTH_REFRESH_COOKIE = 'qme-auth-refresh-token'
+
 # https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'users.apis.serializers.CustomRegisterSerializer'
@@ -126,6 +139,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -171,3 +185,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_TEST_PUBLIC')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET')
+STRIPE_SUBSCRIPTION_PRICE = os.environ.get('STRIPE_SUBSCRIPTION_PRICE')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')

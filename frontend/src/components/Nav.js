@@ -5,19 +5,40 @@ import Login from '../pages/auth/Login';
 import Logout from './auth/Logout';
 import { TokenContext } from '../TokenContext';
 import { MessageContext } from '../MessageContext';
+import axios from 'axios';
+import { baseBackendUrl } from '../urls';
 
 
 const HomeNav = () => {
     const [token, setToken] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    
+    const checkToken = () => {
 
-    function checkToken() {
-        setToken(localStorage.getItem('token'));
+        const data = {
+            'token': localStorage.getItem('access_token')
+        }
+
+        if (localStorage.getItem('access_token')) {
+            axios.post(`${baseBackendUrl}/users/token/verify/`, data)
+                .then(res => {
+                    setIsAuthenticated(true);
+                })
+                .catch(err => {
+                    setIsAuthenticated(false);
+                    setMessage(['Token verification failed at Nav component.']);
+                    console.log(err);
+                    localStorage.removeItem('access_token');
+                    localStorage.removeItem('refresh_token');
+            });
+        }
+
     }
 
     useEffect(() => {
         checkToken();
-    }, [token]);
+    }, [message, setMessage, setIsAuthenticated]);
 
     return (
         <Navbar bg="light" expand="lg">
@@ -30,10 +51,10 @@ const HomeNav = () => {
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                         <Nav.Link href="#contact">Contact</Nav.Link>
                     </div>
-                        {token?
+                        {isAuthenticated?
                             <>
-                                <Nav.Link href="#home">Dashboard</Nav.Link>
-                                <Logout />
+                                <Nav.Link><Link to='/dashboard'>Dashboard</Link></Nav.Link>
+                                <Logout setIsAuthenticated={setIsAuthenticated} />
                             </>
                             :
                             <>  

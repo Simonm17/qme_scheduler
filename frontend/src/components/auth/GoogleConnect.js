@@ -19,8 +19,9 @@ function GoogleConnect({ params }) {
     const submitCode = async () => {
         await axios.post(`${baseBackendUrl}/users/google/connect/`, data)
         .then(res => {
-            let token = localStorage.setItem('token', res.data.key);
-            history.push('/');
+            localStorage.setItem('access_token', res.data.access_token);
+            localStorage.setItem('refresh_token', res.data.refresh_token);
+            history.push('/dashboard');
         })
         .catch(err => {
             console.log(err);
@@ -32,8 +33,7 @@ function GoogleConnect({ params }) {
     }, []);
 
     return (
-        <p>{accessCode}</p>
-        
+        <></>
     )
 }
 

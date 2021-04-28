@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -6,13 +6,11 @@ import {
   Link,
 } from "react-router-dom";
 import HomePage from './pages/index/Home';
-import Message from './components/Message';
 import { TokenProvider } from './TokenContext';
 import { MessageProvider } from './MessageContext';
-import Register from './pages/auth/Register';
-import ConfirmEmail from './pages/auth/ConfirmEmail';
 import Auth from './pages/auth/Auth';
 import PasswordResetConfirm from './pages/auth/PasswordResetConfirm';
+import Dashboard from './pages/dashboard/Dashboard';
 
 
 function App() {
@@ -28,6 +26,9 @@ function App() {
         <Route path='/users'>
           <Auth />
         </Route>
+        <Route path='/dashboard'>
+          <Dashboard />
+        </Route>
         <Route
           path='/reset/:uid?/:code?'
           render={
@@ -38,7 +39,7 @@ function App() {
           }
         />
       </Switch>
-      
+
     </BrowserRouter>
     </MessageProvider>
     </TokenProvider>

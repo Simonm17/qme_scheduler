@@ -1,5 +1,7 @@
 import react, { useContext, useEffect } from 'react';
 import { MessageContext } from '../MessageContext';
+import styled from 'styled-components';
+
 
 const Message = () => {
 
@@ -10,7 +12,6 @@ const Message = () => {
     };
 
     useEffect(() => {
-        
     }, [message, setMessage]);
 
     const messages = message.map((msg) => 
@@ -19,17 +20,26 @@ const Message = () => {
 
 
     return (
-        <>
+        <Div>
         {message.length > 0?
-            <ul>
-            {messages}
-            <span onClick={clearMsg}>x</span>
-            </ul>
+            <div className="alert alert-info d-flex" role="alert">
+                <ul>
+                {messages}
+                </ul>
+                <span onClick={clearMsg}>x</span>
+            </div>
             :
             ''
         }
-        </>
+        </Div>
     )
 }
+
+const Div = styled.div`
+    span {
+        margin-left: 25px;
+        cursor: pointer;
+    }
+`;
 
 export default Message;

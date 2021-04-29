@@ -1,3 +1,11 @@
+"""
+DEV NOTE: If you want to create signals,
+you must specify in INSTALLED_APPS the full app name,
+e.g. 'sub.apps.SubConfig'
+NOT 'sub'.
+
+"""
+
 import os
 from pathlib import Path
 

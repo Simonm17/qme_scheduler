@@ -27,6 +27,14 @@ SECRET_KEY = os.environ['QME_SECRET_KEY']
 
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     'corsheaders',
     'crispy_forms',
     'rest_framework',
@@ -40,14 +48,6 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'subscriptions.apps.SubscriptionsConfig',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
 ]
 
 SITE_ID = 1

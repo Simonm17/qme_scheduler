@@ -6,9 +6,11 @@ import axios from 'axios';
 function ConfirmEmail({ params }) {
 
     // slices and returns code for backend code submission
-    const emailCode = params.location.pathname.slice(22, -1);
+    const paramString = params.location.pathname.split('/');
+    const code = paramString[3]
+
     const data = {
-        'key': emailCode
+        'key': code
     }
 
     const [verified, setVerified] = useState(false);
@@ -33,7 +35,10 @@ function ConfirmEmail({ params }) {
             {verified?
             <h1>Your email has been verified!</h1>
             :
-            emailCode}
+            <>
+            <p>{code}</p>
+            </>
+            }
         </>
     )
 }

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'corsheaders',
     'crispy_forms',
     'rest_framework',
     'rest_framework.authtoken',
@@ -52,7 +51,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'dj_rest_auth.registration',
 
     'users.apps.UsersConfig',
     'subscriptions.apps.SubscriptionsConfig',
@@ -72,13 +70,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000',
-    'http://localhost:3000',
-
-]
 
 ROOT_URLCONF = 'config.urls'
 
@@ -127,29 +118,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
-}
-
-# REST_USE_JWT = True
-
-# JWT_AUTH_COOKIE = 'qme-auth-token'
-
-# JWT_AUTH_REFRESH_COOKIE = 'qme-auth-refresh-token'
-
-# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
-# REST_AUTH_REGISTER_SERIALIZERS = {
-#     'REGISTER_SERIALIZER': 'users.apis.serializers.CustomRegisterSerializer'
-# }
-
-# REST_AUTH_SERIALIZERS = {
-#     'USER_DETAILS_SERIALIZER': 'users.apis.serializers.UserSerializer',
-# }
-
-# ACCOUNT_ADAPTER = 'users.apis.adapters.CustomUserAccountAdapter'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -203,8 +171,12 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
 # Stripe settings
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_TEST_PUBLIC')
+
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET')
+
 STRIPE_SUBSCRIPTION_PRICE = os.environ.get('STRIPE_SUBSCRIPTION_PRICE')
+
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')

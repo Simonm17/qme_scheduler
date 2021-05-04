@@ -1,0 +1,49 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/signup.css' %}">
+{% endblock head%}
+
+{% block content %}
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup container" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  
+  <div class='party-div col d-flex flex-column'>
+    <h1>{% trans "My firm represents" %}...</h1>
+    <div>
+    {{ form.party }}
+    <div>
+  </div>
+  <div class='auth-div'>
+    <div class='col d-flex flex-column'>
+      {{ form.email }}
+      {{ form.first_name }}
+      {{ form.last_name }}
+      {{ form.password1 }}
+      {{ form.password2 }}
+    </div>
+  </div>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %}</button>
+</form>
+{% endblock %}
+
+
+{% block script %}
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $(".auth-div").hide();
+    $("input[type='radio'][name='party']").click(function() {
+      $(".auth-div").fadeIn(200);
+    });
+  });
+</script>
+{% endblock script %}

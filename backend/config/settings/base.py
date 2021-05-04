@@ -123,24 +123,32 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_USERNAME_REQUIRED = False
 
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm',
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     )
 }
 
-REST_USE_JWT = True
+# REST_USE_JWT = True
 
-JWT_AUTH_COOKIE = 'qme-auth-token'
+# JWT_AUTH_COOKIE = 'qme-auth-token'
 
-JWT_AUTH_REFRESH_COOKIE = 'qme-auth-refresh-token'
+# JWT_AUTH_REFRESH_COOKIE = 'qme-auth-refresh-token'
 
 # https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'users.apis.serializers.CustomRegisterSerializer'
-}
+# REST_AUTH_REGISTER_SERIALIZERS = {
+#     'REGISTER_SERIALIZER': 'users.apis.serializers.CustomRegisterSerializer'
+# }
 
-ACCOUNT_ADAPTER = 'users.apis.adapters.CustomUserAccountAdapter'
+# REST_AUTH_SERIALIZERS = {
+#     'USER_DETAILS_SERIALIZER': 'users.apis.serializers.UserSerializer',
+# }
+
+# ACCOUNT_ADAPTER = 'users.apis.adapters.CustomUserAccountAdapter'
 
 
 AUTHENTICATION_BACKENDS = [

@@ -43,4 +43,18 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
 </form>
 
+{% if socialaccount_providers %}
+
+    <div class="socialaccount_ballot">
+        Login with {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </div>
+    {% include "socialaccount/snippets/login_extra.html" %}
+{% endif %}
+
+<div>
+    <p>Need an account?
+        <a href="{% url 'account_signup' %}">Sign up</a>
+    </p>
+</div>
+
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="col">
+        <ul>
+            <li>
+                <a href="{% url 'profile' %}">Edit Profile</a>
+            </li>
+            <li>
+                <a href="{% url 'account_change_password' %}">Change Password</a>
+            </li>
+        </ul>
+    </div>
+    <div class='col'>
+        {% block form %}{% endblock %}
+    </div>
+</div>
+
+{% endblock main %}

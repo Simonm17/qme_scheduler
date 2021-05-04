@@ -1,0 +1,27 @@
+form li {
+    list-style: none;
+}
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked){
+    visibility: hidden;
+}
+
+label[for="id_party_0"], label[for="id_party_1"] {
+    border: .25px solid black;
+    border-radius: 10%;
+    padding: 100px;
+}
+
+label[for="id_party_0"]:checked, label[for="id_party_1"]:checked {
+    border-color: blue;
+}
+
+#id_party {
+    display: flex;
+}
+
+.turn-blue {
+    border-color: blue;
+}

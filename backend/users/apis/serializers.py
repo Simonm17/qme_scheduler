@@ -302,8 +302,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'pk', 'email', 'first_name', 'last_name', 'date_of_birth',
+            'pk', 'email', 'first_name', 'last_name',
             'date_joined', 'last_login', 'is_active',
             'is_staff', 'is_admin', 'is_superuser',
             'party', 'is_requesting_admin', 'is_firm_admin',
         ]
+
+

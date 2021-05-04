@@ -445,9 +445,10 @@ class DefaultAccountAdapter(object):
         can be `None` here.
         """
         url = reverse("account_confirm_email", args=[emailconfirmation.key])
+        ret = build_absolute_uri(request, url)
+        # for dj-rest-auth
         # url = reverse("rest_verify_email", args=[emailconfirmation.key])
-        # ret = build_absolute_uri(request, url)
-        ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
+        # ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
         return ret
 
     def send_confirmation_mail(self, request, emailconfirmation, signup):
@@ -469,8 +470,7 @@ class DefaultAccountAdapter(object):
         return HttpResponseRedirect(reverse("account_inactive"))
 
     def respond_email_verification_sent(self, request, user):
-        # return HttpResponseRedirect(reverse("account_email_verification_sent"))
-        return HttpResponseRedirect(reverse("send_email_verification"))
+        return HttpResponseRedirect(reverse("account_email_verification_sent"))
 
     def _get_login_attempts_cache_key(self, request, **credentials):
         site = get_current_site(request)

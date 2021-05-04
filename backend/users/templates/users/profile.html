@@ -7,6 +7,7 @@
 <h5>{{ user.email }}</h5>
 <p>For {{ user.party }}</p>
 <form method='POST'>
+{% csrf_token %}
 {{ form }}
 <p>Last login: {{ user.last_login }}</p>
 {% if user.is_requesting_admin %}

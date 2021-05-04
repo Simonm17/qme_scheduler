@@ -35,4 +35,5 @@ def select_party(request):
             'form': form,
         }
         return render(request, 'users/party.html', context)
+    messages.info(request, f'You already have a party selected.')
     return redirect('home')

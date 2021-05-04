@@ -4,7 +4,11 @@ import { render } from 'react-dom';
 
 function App() {
     return (
-        <h1>Hello React World!!</h1>
+        <>
+            <div>
+                <h1>React</h1>
+            </div>
+        </>
     )
 }
 

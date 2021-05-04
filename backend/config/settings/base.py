@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'subscriptions.apps.SubscriptionsConfig',
+    'dashboard.apps.DashboardConfig',
 ]
 
 SITE_ID = 1

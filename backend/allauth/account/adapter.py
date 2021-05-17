@@ -444,11 +444,13 @@ class DefaultAccountAdapter(object):
         confirmations are sent outside of the request context `request`
         can be `None` here.
         """
-        url = reverse("account_confirm_email", args=[emailconfirmation.key])
-        ret = build_absolute_uri(request, url)
+        #TODO: fix hard coding
+        # for django allauth
+        # url = reverse("account_confirm_email", args=[emailconfirmation.key])
+        # ret = build_absolute_uri(request, url)
         # for dj-rest-auth
         # url = reverse("rest_verify_email", args=[emailconfirmation.key])
-        # ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
+        ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
         return ret
 
     def send_confirmation_mail(self, request, emailconfirmation, signup):

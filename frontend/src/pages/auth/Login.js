@@ -9,11 +9,10 @@ import { Link, useHistory } from 'react-router-dom';
 import GoogleLogin from '../../components/auth/GoogleLogin';
 
 
-
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [token, setToken] = useContext(TokenContext);
+    const [isAuthenticated, setIsAuthenticated] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
 
     let history = useHistory();
@@ -21,14 +20,15 @@ function Login() {
     const displayErrors = (e) => {
         setMessage([]);
         for (const [key, value] of Object.entries(e)) {
-            if (value === 'E-mail is not verified.') {
+            console.log(value);
+            console.log(typeof(value))
+            if (value == 'E-mail is not verified.') {
+                console.log(`You can resend email!`);
                 setMessage(prev => [...prev, [value, <ResendEmail email={email}/>]]);
             } else {
                 setMessage(prev => [...prev, [value]]);
             }
         }
-
-
     }
 
     const handleLoginSubmit = async(e) => {
@@ -46,8 +46,8 @@ function Login() {
         .then(res => {
             console.log(res.data);
             setMessage(['Successfully logged in!']);
+            setIsAuthenticated(true);
             history.push('/');
-
         }).catch(err => {
             if (!err.response) {
                 setMessage(['Not connected to database servers. Please try again later.']);

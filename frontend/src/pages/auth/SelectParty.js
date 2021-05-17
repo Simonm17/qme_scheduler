@@ -85,7 +85,6 @@ function SelectParty() {
             <p>party: {party}</p>
         </Form>
     )
-
 }
 
 const Form = styled.form`

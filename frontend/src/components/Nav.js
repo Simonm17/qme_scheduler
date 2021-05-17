@@ -8,7 +8,7 @@ import { MessageContext } from '../MessageContext';
 import axios from 'axios';
 import { baseBackendUrl } from '../urls';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNotesMedical, faHome, faCommentsDollar, faPhone, faDollarSign, faSignInAlt, faUserPlus, faSignOutAlt, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faNotesMedical, faHome, faCommentsDollar, faPhone, faUser, faSignInAlt, faUserPlus, faSignOutAlt, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 
 const HomeNav = () => {
@@ -16,7 +16,7 @@ const HomeNav = () => {
     const [message, setMessage] = useContext(MessageContext);
 
     useEffect(() => {
-        
+
     }, [isAuthenticated, message]);
 
     return (
@@ -34,6 +34,7 @@ const HomeNav = () => {
                         {isAuthenticated?
                             <>
                                 <Nav.Link><Link to='/dashboard'><FontAwesomeIcon icon={faClipboardList} /> Dashboard</Link></Nav.Link>
+                                <Nav.Link><Link to='/'><FontAwesomeIcon icon={faUser} /> User</Link></Nav.Link>
                                 <Logout setIsAuthenticated={setIsAuthenticated} />
                             </>
                             :

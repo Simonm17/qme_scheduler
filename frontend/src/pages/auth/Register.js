@@ -3,8 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import { baseBackendUrl } from '../../urls';
 import { MessageContext } from '../../MessageContext';
-import Message from '../../components/Message';
-import Nav from '../../components/Nav';
+
 
 function Register() {
 
@@ -40,7 +39,7 @@ function Register() {
             'is_requesting_admin': isAdmin,
         }
 
-        axios.post(`${baseBackendUrl}/users/registration/`, registerData)
+        axios.post(`${baseBackendUrl}/users/dj-rest-auth/registration/`, registerData)
         .then(res => {
             console.log(res.data);
             setMessage([]);
@@ -77,8 +76,6 @@ function Register() {
             </Form>
             </>
         }
-
-            
         </>
     )
 }

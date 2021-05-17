@@ -13,8 +13,7 @@ function Dashboard() {
     let history = useHistory();
 
     const [message, setMessage] = useContext(MessageContext);
-    // const [token, setToken] = useState(localStorage.getItem('token'));
-    const [isValidated, setIsValidated] = useState(false);
+    const [isValidated, setIsValidated] = useContext(TokenContext);
 
     const data = {
         'token': localStorage.getItem('access_token')

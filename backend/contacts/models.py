@@ -1,10 +1,17 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.admin.options import get_content_type_for_model
 
 
 class Contact(models.Model):
     primary = models.BooleanField(default=False)
+    
+    entity_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    entity_content_object_id = models.PositiveIntegerField()
+    entity_content_object = GenericForeignKey('entity_content_type', 'entity_content_object_id')
 
     created_by = models.ForeignKey("users.User", on_delete=models.PROTECT, related_name="%(class)s_created_by")
     created_date = models.DateTimeField(auto_now_add=True)
@@ -21,7 +28,22 @@ class Contact(models.Model):
             if Entity owning the Contact has another Contact object that has primary=True,
             turn the latter.primary=False (so that new/updated Contact is now the new primary).
         """
-        pass
+        # get object model class
+        get_object_model = type(self)
+        # query model to filter by entity_content_object and see if they have primary == true
+        query_primary_contacts_by_entity_obj = get_object_model.objects.filter(
+            entity_content_type=get_content_type_for_model(self),
+            entity_content_object_id=self.entity_content_object_id,
+            primary=True
+        )
+        # turn rest of the objects' primary == False
+        for obj in query_primary_contacts_by_entity_obj:
+            obj.primary = False
+            obj.save()
+        # make sure current object.primary = True
+        current_model = get_object_model.objects.get(pk=self.pk)
+        current_model.save()
+        return current_model
 
 
 class Address(Contact):
@@ -110,17 +132,15 @@ class Entity(models.Model):
         ('Other', 'Other'),
     ]
     type = models.CharField(choices=TYPE, max_length=200, default='Other')
-    # Null has no effect on ManyToManyField
-    address = models.ManyToManyField(Address, blank=True)
-    telephone = models.ManyToManyField(Telephone, blank=True)
-    email = models.ManyToManyField(Email, blank=True)
     notes = models.TextField(blank=True)
 
     created_by = models.ForeignKey("users.User", on_delete=models.PROTECT, related_name="%(class)s_created_by")
     created_date = models.DateTimeField(auto_now_add=True)
 
     updated_by = models.ForeignKey("users.User", on_delete=models.PROTECT, related_name="%(class)s_updated_by", blank=True, null=True)
-    updated_date = models.DateTimeField(auto_now=True)  
+    updated_date = models.DateTimeField(auto_now=True)
+
+
 
     class Meta:
         abstract = True

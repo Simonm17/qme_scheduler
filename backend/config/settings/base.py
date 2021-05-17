@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'corsheaders',
     'crispy_forms',
+
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -51,6 +53,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
 
     'users.apps.UsersConfig',
     'subscriptions.apps.SubscriptionsConfig',
@@ -97,6 +102,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 AUTH_USER_MODEL = 'users.User'
 
+
+''' ALLAUTH SETTINGS '''
+
 # Setting this to “email” requires ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
@@ -118,6 +126,31 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
+}
+
+''' dj_rest_auth SETTINGS '''
+
+REST_USE_JWT = True
+
+JWT_AUTH_COOKIE = 'qme-auth'
+
+JWT_AUTH_REFRESH_COOKIE = 'qme-refresh-token'
+
+REST_AUTH_SERIALIZERS = {
+
+}
+
+ACCOUNT_ADAPTER = 'users.api.adapters.CustomUserAccountAdapter'
+
+# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.api.serializers.CustomRegisterSerializer',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
 }
 
 
@@ -181,3 +214,24 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET')
 STRIPE_SUBSCRIPTION_PRICE = os.environ.get('STRIPE_SUBSCRIPTION_PRICE')
 
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+
+
+''' CORSHEADERS SETTINGS '''
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://127.0.0.1:8000',
+#     'http://localhost:8000',
+#     'http://127.0.0.1:3000',
+#     'http://localhost:3000',
+# ]
+
+# Django CSRF cookie settings

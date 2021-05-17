@@ -18,7 +18,6 @@ const Message = () => {
         <li key={message.indexOf(msg)}>{msg}</li>
     );
 
-
     return (
         <Div>
         {message.length > 0?

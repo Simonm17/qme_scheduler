@@ -1,15 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block head %}{% endblock head %}
-
 {% block main %}
-<div id="app">
-    <!-- React components will load here -->
+<div>
+    <nav>
+        <div>
+            <ul>
+                <li>New Appointment</li>
+                <li>Search Appointments</li>
+            </ul>
+            <ul>
+                <li>Search Contacts</li>
+                <li>New Contact (Person)</li>
+                <li>New Contact (Company)</li>
+            </ul>
+            <ul>
+                <li>Create tasks</li>
+                <li>View tasks</li>
+            </ul>
+        </div>
+        <div>
+            <form>
+                <input type='text' placeholder='Search Applicants'>
+            </form>
+        </div>
+    </nav>
+    <h1>Dashboard</h1>
+    <div>
+        <div>
+            <h5>Past Due Tasks</h5>
+            <div>
+                <p>Jose Martinez</p>
+                <p>John Candaman</p>
+                <p>Laura Hope</p>
+            </div>
+        </div>
+        <div>
+            <h5>Things to do today</h5>
+            <ul>
+                <li>Water plant</li>
+                <li>Feed pet</li>
+                <li>Make money</li>
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock main %}
-
-{% block script %}
-<script src="{% static 'dashboard/main.js' %}"></script>
-{% endblock script %}
-

@@ -16,9 +16,14 @@ function GoogleConnect({ params }) {
         'code': accessCode
     }
 
-    const submitCode = async () => {
+    const submitCode = async() => {
         await axios.post(`${baseBackendUrl}/users/google/connect/`, data)
         .then(res => {
+            console.log(res.data);
+            if (!res.data.user.party || res.data.user.party === '') {
+                console.log('user has no party!');
+                history.push('/users/select');
+            }
             localStorage.setItem('access_token', res.data.access_token);
             localStorage.setItem('refresh_token', res.data.refresh_token);
             history.push('/dashboard');

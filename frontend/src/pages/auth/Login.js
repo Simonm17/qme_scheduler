@@ -23,23 +23,29 @@ function Login() {
         for (const [key, value] of Object.entries(e)) {
             console.log(`${key}: ${value}`);
 
-            if (value == 'E-mail is not verified.') {
+            if (value === 'E-mail is not verified.') {
                 setMessage(prev => [...prev, [value, <ResendEmail email={email}/>]]);
             } else {
                 setMessage(prev => [...prev, [value]]);
             }
         }
+
+
     }
 
-    const handleLoginSubmit = e => {
+    const handleLoginSubmit = async(e) => {
         e.preventDefault();
 
         const loginData = {
             'email': email,
             'password': password,
         }
-
-        axios.post(`${baseBackendUrl}/users/login/`, loginData)
+        // axios.defaults.withCredentials = true;
+        await axios({
+            method: 'post',
+            withCredentials: true,
+            url: `${baseBackendUrl}/users/dj-rest-auth/login/`, 
+            data: loginData})
         .then(res => {
             console.log(res.data);
             let access_token = localStorage.setItem('access_token', res.data.access_token);
@@ -48,15 +54,21 @@ function Login() {
             history.push('/dashboard');
 
         }).catch(err => {
-            displayErrors(err.response.data);
+            if (!err.response) {
+                setMessage(['Not connected to database servers. Please try again later.']);
+                
+            } else {
+                // displayErrors(err.response.data);
+                console.log(err);
+            }
         });
     }
 
     return (
         <>
             <Form inline onSubmit={handleLoginSubmit}>
-                <FormControl type="text" placeholder='email' className='mr-sm-2' value={email} onChange={e => setEmail(e.target.value)}></FormControl>
-                <FormControl type='password' placeholder='password' className='mr-sm-2' value={password} onChange={e => setPassword(e.target.value)}></FormControl>
+                <FormControl type="text" placeholder='email' className='mr-sm-2' value={email} onChange={e => setEmail(e.target.value)} required></FormControl>
+                <FormControl type='password' placeholder='password' className='mr-sm-2' value={password} onChange={e => setPassword(e.target.value)} required></FormControl>
                 <Button variant='outline-success' type='submit'>Login</Button>
             </Form>
             <small className="text-sm">Forgot password? <Link to='password/reset'>reset password</Link></small>

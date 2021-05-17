@@ -21,8 +21,6 @@ function Login() {
     const displayErrors = (e) => {
         setMessage([]);
         for (const [key, value] of Object.entries(e)) {
-            console.log(`${key}: ${value}`);
-
             if (value === 'E-mail is not verified.') {
                 setMessage(prev => [...prev, [value, <ResendEmail email={email}/>]]);
             } else {
@@ -40,7 +38,6 @@ function Login() {
             'email': email,
             'password': password,
         }
-        // axios.defaults.withCredentials = true;
         await axios({
             method: 'post',
             withCredentials: true,
@@ -48,17 +45,15 @@ function Login() {
             data: loginData})
         .then(res => {
             console.log(res.data);
-            let access_token = localStorage.setItem('access_token', res.data.access_token);
-            let refresh_token = localStorage.setItem('refresh_token', res.data.refresh_token);
             setMessage(['Successfully logged in!']);
-            history.push('/dashboard');
+            history.push('/');
 
         }).catch(err => {
             if (!err.response) {
                 setMessage(['Not connected to database servers. Please try again later.']);
                 
             } else {
-                // displayErrors(err.response.data);
+                displayErrors(err.response.data);
                 console.log(err);
             }
         });

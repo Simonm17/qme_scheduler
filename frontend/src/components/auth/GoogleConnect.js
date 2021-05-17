@@ -17,7 +17,7 @@ function GoogleConnect({ params }) {
     }
 
     const submitCode = async() => {
-        await axios.post(`${baseBackendUrl}/users/google/connect/`, data)
+        await axios.post(`${baseBackendUrl}/users/google/connect/`, data, {withCredentials: true})
         .then(res => {
             console.log(res.data);
             if (!res.data.user.party || res.data.user.party === '') {

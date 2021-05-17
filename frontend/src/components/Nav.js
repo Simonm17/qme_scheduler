@@ -12,34 +12,12 @@ import { faNotesMedical, faHome, faCommentsDollar, faPhone, faDollarSign, faSign
 
 
 const HomeNav = () => {
-    const [token, setToken] = useContext(TokenContext);
+    const [isAuthenticated, setIsAuthenticated] = useContext(TokenContext);
     const [message, setMessage] = useContext(MessageContext);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    
-    const checkToken = () => {
-
-        const data = {
-            'token': localStorage.getItem('access_token')
-        }
-
-        if (localStorage.getItem('access_token')) {
-            axios.post(`${baseBackendUrl}/users/dj-rest-auth/token/verify/`, data)
-                .then(res => {
-                    setIsAuthenticated(true);
-                })
-                .catch(err => {
-                    setIsAuthenticated(false);
-                    setMessage(['Token verification failed at Nav component.']);
-                    console.log(err);
-                    localStorage.removeItem('access_token');
-                    localStorage.removeItem('refresh_token');
-            });
-        }
-    }
 
     useEffect(() => {
-        // checkToken();
-    }, [message, setMessage, setIsAuthenticated]);
+        
+    }, [isAuthenticated, message]);
 
     return (
         <Navbar bg="light" expand="sm">

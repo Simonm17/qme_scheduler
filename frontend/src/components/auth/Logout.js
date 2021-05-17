@@ -8,22 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 
-function Logout({ setIsAuthenticated }) {
+function Logout() {
 
     const [message, setMessage] = useContext(MessageContext);
+    const [isAuthenticated, setIsAuthenticated] = useContext(TokenContext);
 
     const handleLogoutClick = () => {
-        axios.post(`${baseBackendUrl}/users/dj-rest-auth/logout/`)
+        axios.post(`${baseBackendUrl}/users/dj-rest-auth/logout/`, {data:''}, {withCredentials:true})
         .then(res => {
             setMessage(['Successfully logged out!']);
+            setIsAuthenticated(false);
         })
         .catch(err => {
             console.log(err);
             setMessage(['An error occured.']);
         });
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        setIsAuthenticated(false);
     }
 
     return (

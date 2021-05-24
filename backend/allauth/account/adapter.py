@@ -16,6 +16,7 @@ from django.contrib.auth import (
 )
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.cache import cache
 from django.core.mail import EmailMessage, EmailMultiAlternatives
@@ -443,14 +444,12 @@ class DefaultAccountAdapter(object):
         Note that if you have architected your system such that email
         confirmations are sent outside of the request context `request`
         can be `None` here.
+
+        Fixed hardcoding url by querying SITE_ID=1
         """
-        #TODO: fix hard coding
-        # for django allauth
-        # url = reverse("account_confirm_email", args=[emailconfirmation.key])
-        # ret = build_absolute_uri(request, url)
-        # for dj-rest-auth
-        # url = reverse("rest_verify_email", args=[emailconfirmation.key])
-        ret = f'http://localhost:3000/users/confirm-email/{emailconfirmation.key}/'
+        frontend_domain = Site.objects.get(pk=1)
+        # endpoint = reverse("account_confirm_email", args=[emailconfirmation.key])
+        ret = f'{frontend_domain}/users/confirm-email/{emailconfirmation.key}'
         return ret
 
     def send_confirmation_mail(self, request, emailconfirmation, signup):

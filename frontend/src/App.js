@@ -11,6 +11,7 @@ import { MessageProvider } from './MessageContext';
 import Auth from './pages/auth/Auth';
 import PasswordResetConfirm from './pages/auth/PasswordResetConfirm';
 import Dashboard from './pages/dashboard/Dashboard';
+import Profile from './pages/auth/Profile';
 
 
 function App() {

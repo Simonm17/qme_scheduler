@@ -9,6 +9,7 @@ import PasswordResetConfirm from './PasswordResetConfirm';
 import Message from '../../components/Message';
 import GoogleConnect from '../../components/auth/GoogleConnect';
 import SelectParty from './SelectParty';
+import Profile from './Profile';
 
 
 function Auth() {
@@ -31,6 +32,9 @@ function Auth() {
                 </Route>
                 <Route path={`${path}/select`}>
                     <SelectParty />
+                </Route>
+                <Route path={`${path}/profile`}>
+                    <Profile />
                 </Route>
                 <Route
                     path={`${path}/confirm-email/:code`}

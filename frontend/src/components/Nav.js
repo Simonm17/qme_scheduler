@@ -34,7 +34,7 @@ const HomeNav = () => {
                         {isAuthenticated?
                             <>
                                 <Nav.Link><Link to='/dashboard'><FontAwesomeIcon icon={faClipboardList} /> Dashboard</Link></Nav.Link>
-                                <Nav.Link><Link to='/'><FontAwesomeIcon icon={faUser} /> User</Link></Nav.Link>
+                                <Nav.Link><Link to='/users/profile'><FontAwesomeIcon icon={faUser} /> User</Link></Nav.Link>
                                 <Logout setIsAuthenticated={setIsAuthenticated} />
                             </>
                             :

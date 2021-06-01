@@ -12,9 +12,12 @@ function PasswordResetConfirm({ params }) {
 
     const [message, setMessage] = useContext(MessageContext);
 
+    // current param split: users / password / reset / confirm / uid / code
     const full_params = params.location.pathname.split('/');
-    const uid = full_params[2];
-    const token = full_params[3];
+
+    // need to change index depending on url
+    const uid = full_params[5];
+    const token = full_params[6];
 
     const [pass1, setPass1] = useState('');
     const [pass2, setPass2] = useState('');

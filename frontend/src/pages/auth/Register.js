@@ -39,7 +39,7 @@ function Register() {
             'is_requesting_admin': isAdmin,
         }
 
-        axios.post(`${baseBackendUrl}/users/dj-rest-auth/registration/`, registerData)
+        axios.post(`${baseBackendUrl}/users/registration/`, registerData)
         .then(res => {
             console.log(res.data);
             setMessage([]);

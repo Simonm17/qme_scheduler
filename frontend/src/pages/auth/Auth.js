@@ -27,6 +27,15 @@ function Auth() {
                 <Route path={`${path}/register`}>
                     <Register />
                 </Route>
+                <Route
+                    path={`${path}/password/reset/confirm/:uid/:code`}
+                    render={
+                        locationProps => 
+                        <PasswordResetConfirm
+                        params={locationProps}
+                        />
+                    }
+                />
                 <Route path={`${path}/password/reset`}>
                     <PasswordReset />
                 </Route>
@@ -54,6 +63,7 @@ function Auth() {
                         />
                     }
                 />
+
             </Switch>
         </>
     )

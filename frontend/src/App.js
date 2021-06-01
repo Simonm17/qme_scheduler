@@ -30,15 +30,6 @@ function App() {
         <Route path='/dashboard'>
           <Dashboard />
         </Route>
-        <Route
-          path='/reset/:uid?/:code?'
-          render={
-              locationProps => 
-              <PasswordResetConfirm
-              params={locationProps}
-              />
-          }
-        />
       </Switch>
 
     </BrowserRouter>

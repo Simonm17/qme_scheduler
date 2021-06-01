@@ -9,7 +9,6 @@ from .views import home
 
 
 urlpatterns = [
-    # https://stackoverflow.com/questions/44676880/error-reverse-for-password-reset-done-not-found-password-reset-done-is-not
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),

@@ -10,7 +10,7 @@ export const TokenProvider = props => {
 
     function refreshToken() {
         axios.post(
-            `${baseBackendUrl}/users/dj-rest-auth/token/refresh/`,
+            `${baseBackendUrl}/users/token/refresh/`,
             {data: ''}, {withCredentials: true}
             )
             .then(res => {

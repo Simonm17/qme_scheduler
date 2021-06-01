@@ -20,7 +20,7 @@ function Dashboard() {
     }
 
     function validateToken() {
-        axios.post(`${baseBackendUrl}/users/dj-rest-auth/token/verify/`, data)
+        axios.post(`${baseBackendUrl}/users/token/verify/`, data)
         .then(res => {
             setIsValidated(true);
         })

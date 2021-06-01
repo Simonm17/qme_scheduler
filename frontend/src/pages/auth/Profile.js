@@ -20,8 +20,8 @@ const Profile = () => {
     const [oldPass, setOldPass] = useState('');
     const [newPass1, setNewPass1] = useState('');
     const [newPass2, setNewPass2] = useState('');
-    const userUrl = `${baseBackendUrl}/users/dj-rest-auth/user/`
-    const passUrl = `${baseBackendUrl}/users/dj-rest-auth/password/change/`
+    const userUrl = `${baseBackendUrl}/users/user/`
+    const passUrl = `${baseBackendUrl}/users/password/change/`
 
     const getProfile = () => {
         axios.get(userUrl).then(res => {

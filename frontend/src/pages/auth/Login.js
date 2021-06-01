@@ -41,7 +41,7 @@ function Login() {
         await axios({
             method: 'post',
             withCredentials: true,
-            url: `${baseBackendUrl}/users/dj-rest-auth/login/`, 
+            url: `${baseBackendUrl}/users/login/`, 
             data: loginData})
         .then(res => {
             console.log(res.data);
